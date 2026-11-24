@@ -75,6 +75,27 @@ git push origin feature/listado-recetas
 
 ---
 
+## 🚀 Instalación
+
+Requisitos:
+- Node 22.23.4 o superior
+- [pnpm](https://pnpm.io) (`npm install -g pnpm`)
+
+```bash
+pnpm install
+pnpm dev
+```
+
+| Comando | Acción |
+| :-- | :-- |
+| `pnpm install` | Instala las dependencias |
+| `pnpm dev` | Servidor local en `localhost:4321` |
+| `pnpm check` | Valida tipos con `astro check` |
+| `pnpm build` | Genera el sitio en `./dist/` |
+| `pnpm preview` | Previsualiza la compilación |
+
+> `astro check` todavía no soporta TypeScript 7, por eso el proyecto fija `typescript@6`.
+
 ## 🙌 Agradecimientos
 
 A las abuelas, tías, cocineros del norte y al equipo de desarrollo que mantienen viva la tradición. 🔥
