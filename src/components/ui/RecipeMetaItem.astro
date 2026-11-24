@@ -1,0 +1,35 @@
+---
+type Tone = "primary" | "secondary";
+
+interface Props {
+  /** Etiqueta, por ejemplo "Nivel de picor", "Tiempo total" o "Rendimiento". */
+  label: string;
+  /** Valor, por ejemplo "Bravo", "30 min" o "5 porciones". */
+  value: string;
+  tone?: Tone;
+  class?: string;
+}
+
+const { label, value, tone = "secondary", class: className } = Astro.props;
+
+const circle = tone === "primary" ? "bg-primary-fixed text-primary" : "bg-surface-variant text-secondary";
+const valueColor = tone === "primary" ? "text-primary" : "text-on-surface";
+---
+
+<div class:list={["flex items-center gap-space-sm px-space-xs", className]}>
+  <div
+    class:list={["flex size-10 shrink-0 items-center justify-center rounded-full", circle]}
+    aria-hidden="true"
+  >
+    <slot name="icon" />
+  </div>
+  <div>
+    <span class="block font-label-sm text-label-sm uppercase text-on-surface-variant">
+      {label}
+    </span>
+    <div class="flex items-center gap-1">
+      <span class:list={["font-label-lg text-label-lg font-bold", valueColor]}>{value}</span>
+      <slot />
+    </div>
+  </div>
+</div>

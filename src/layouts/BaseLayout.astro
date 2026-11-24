@@ -1,0 +1,57 @@
+---
+import "../styles/global.css";
+
+interface Props {
+  /** Título completo de la pestaña. Cada página decide su formato. */
+  title: string;
+  /** Descripción para buscadores y para compartir. */
+  description: string;
+  /** URL de imagen para compartir (opcional). */
+  image?: string;
+  /** Oculta la página de los buscadores (útil en páginas de prueba). */
+  noindex?: boolean;
+}
+
+const { title, description, image, noindex = false } = Astro.props;
+---
+
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    {noindex && <meta name="robots" content="noindex" />}
+
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" href="/favicon.ico" />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="es_MX" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    {image && <meta property="og:image" content={image} />}
+    <meta
+      name="twitter:card"
+      content={image ? "summary_large_image" : "summary"}
+    />
+
+    <slot name="head" />
+  </head>
+  <body class="flex min-h-screen flex-col">
+    <a
+      href="#contenido"
+      class="sr-only focus:not-sr-only focus:fixed focus:left-space-md focus:top-space-md focus:z-50 focus:rounded-lg focus:bg-primary focus:px-space-md focus:py-space-sm focus:text-on-primary"
+    >
+      Saltar al contenido
+    </a>
+
+    <!-- El encabezado y el pie los aportan SiteHeader y SiteFooter (ECP-09) -->
+    <slot name="header" />
+    <main id="contenido" class="flex-1">
+      <slot />
+    </main>
+    <slot name="footer" />
+  </body>
+</html>

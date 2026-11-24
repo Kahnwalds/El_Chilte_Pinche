@@ -1,0 +1,37 @@
+---
+import Button from "./Button.astro";
+
+interface Props {
+  title: string;
+  description?: string;
+  /** Texto y destino del botón de recuperación. Si falta alguno, no se muestra el botón. */
+  actionLabel?: string;
+  actionHref?: string;
+  class?: string;
+}
+
+const { title, description, actionLabel, actionHref, class: className } = Astro.props;
+---
+
+<div
+  class:list={[
+    "flex flex-col items-center justify-center rounded-2xl bg-surface-container-low px-space-md py-space-2xl text-center",
+    className,
+  ]}
+>
+  <div
+    class="mb-space-md flex size-16 items-center justify-center rounded-full bg-surface-container-high text-secondary"
+    aria-hidden="true"
+  >
+    <slot name="icon" />
+  </div>
+  <h3 class="mb-space-xs font-headline-md text-headline-md text-on-surface">{title}</h3>
+  {
+    description && (
+      <p class="mb-space-lg max-w-md font-body-md text-body-md text-on-surface-variant">
+        {description}
+      </p>
+    )
+  }
+  {actionLabel && actionHref && <Button href={actionHref} size="lg">{actionLabel}</Button>}
+</div>
