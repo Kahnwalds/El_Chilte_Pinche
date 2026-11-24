@@ -1,0 +1,93 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Container from "../components/ui/Container.astro";
+import Button from "../components/ui/Button.astro";
+import Badge from "../components/ui/Badge.astro";
+import FilterChip from "../components/ui/FilterChip.astro";
+import RecipeMetaItem from "../components/ui/RecipeMetaItem.astro";
+import SectionHeading from "../components/ui/SectionHeading.astro";
+import EmptyState from "../components/ui/EmptyState.astro";
+
+const filtros = ["Todas", "Bebidas", "Platillo Fuerte", "Postres", "Caldos"];
+---
+
+<BaseLayout
+  title="Prueba de componentes | El ChiltePinche"
+  description="Página de prueba del layout y de los componentes UI."
+  noindex
+>
+  <Container class="space-y-space-xl py-space-xl">
+    <SectionHeading
+      as="h1"
+      size="display"
+      eyebrow="ECP-03"
+      title="Layout y componentes UI"
+      description="Página de prueba. Se puede eliminar cuando las vistas reales usen estos componentes."
+    />
+
+    <section class="space-y-space-md" >
+      <SectionHeading title="Botones" />
+      <div class="flex flex-wrap items-center gap-space-md">
+        <Button>Primario</Button>
+        <Button variant="secondary">Secundario</Button>
+        <Button variant="ghost" href="/componentes/">Ver receta →</Button>
+        <Button disabled>Deshabilitado</Button>
+        <Button href="/componentes/" disabled variant="secondary">Enlace deshabilitado</Button>
+        <Button size="sm">Pequeño</Button>
+        <Button size="lg">Grande</Button>
+        <Button variant="icon" label="Anterior">
+          <svg slot="icon" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="size-5"><path stroke-linecap="round" stroke-linejoin="round" d="m15 18-6-6 6-6" /></svg>
+        </Button>
+        <Button variant="icon" label="Siguiente">
+          <svg slot="icon" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="size-5"><path stroke-linecap="round" stroke-linejoin="round" d="m9 18 6-6-6-6" /></svg>
+        </Button>
+      </div>
+    </section>
+
+    <section class="space-y-space-md">
+      <SectionHeading title="Etiquetas y chips" />
+      <div class="flex flex-wrap items-center gap-space-sm">
+        <Badge text="Sabor Norteño" />
+        <Badge text="Bravo" tone="primary" />
+        <Badge text="Dulce" tone="tertiary" />
+        <Badge text="Neutra" tone="neutral" />
+      </div>
+      <div class="flex flex-wrap gap-space-sm" id="chips-demo">
+        {filtros.map((f, i) => <FilterChip text={f} value={f.toLowerCase()} active={i === 0} />)}
+      </div>
+      <div class="flex flex-wrap gap-space-sm">
+        <FilterChip text="Chip como enlace (activo)" href="/componentes/" active />
+        <FilterChip text="Chip como enlace" href="/componentes/" />
+      </div>
+    </section>
+
+    <section class="space-y-space-md">
+      <SectionHeading title="Metadatos de receta" />
+      <div class="grid gap-space-md rounded-xl bg-surface-container p-space-md sm:grid-cols-3">
+        <RecipeMetaItem label="Nivel de picor" value="Bravo" tone="primary" />
+        <RecipeMetaItem label="Tiempo total" value="30 min" />
+        <RecipeMetaItem label="Rendimiento" value="5 porciones" />
+      </div>
+    </section>
+
+    <section class="space-y-space-md">
+      <SectionHeading title="Estado vacío" />
+      <EmptyState
+        title="No se encontraron recetas guardadas"
+        description="No hay recetas que coincidan con este filtro. Explora el catálogo para agregar más sabores al fuego."
+        actionLabel="Explorar todas las recetas"
+        actionHref="/componentes/"
+      />
+    </section>
+  </Container>
+</BaseLayout>
+
+<script>
+  // Solo para la prueba: demuestra que el estado activo depende de aria-pressed.
+  const chips = document.querySelectorAll<HTMLButtonElement>("#chips-demo button");
+  chips.forEach((chip) => {
+    chip.addEventListener("click", () => {
+      chips.forEach((c) => c.setAttribute("aria-pressed", String(c === chip)));
+    });
+  });
+</script>

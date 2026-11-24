@@ -1,0 +1,60 @@
+---
+type Level = "h1" | "h2" | "h3";
+type Size = "md" | "lg" | "display";
+type Align = "left" | "center";
+
+interface Props {
+  title: string;
+  /** Texto pequeño sobre el título (por ejemplo "Cultura y sabor"). */
+  eyebrow?: string;
+  /** Subtítulo o descripción bajo el título. */
+  description?: string;
+  /** Nivel semántico. Es independiente del tamaño visual. */
+  as?: Level;
+  size?: Size;
+  align?: Align;
+  uppercase?: boolean;
+  class?: string;
+}
+
+const {
+  title,
+  eyebrow,
+  description,
+  as: Heading = "h2",
+  size = "md",
+  align = "left",
+  uppercase = false,
+  class: className,
+} = Astro.props;
+
+const sizes: Record<Size, string> = {
+  md: "font-headline-md text-headline-md",
+  lg: "font-headline-lg text-headline-lg",
+  display: "font-display text-headline-lg tracking-tight sm:text-display",
+};
+---
+
+<div class:list={["flex items-end justify-between gap-space-md", className]}>
+  <div class:list={["min-w-0", { "mx-auto text-center": align === "center" }]}>
+    {
+      eyebrow && (
+        <p class="mb-1 font-label-lg text-label-lg uppercase tracking-widest text-secondary">
+          {eyebrow}
+        </p>
+      )
+    }
+    <Heading class:list={[sizes[size], "text-on-surface", { uppercase }]}>
+      {title}
+    </Heading>
+    {
+      description && (
+        <p class="mt-space-sm font-body-md text-body-md text-on-surface-variant">
+          {description}
+        </p>
+      )
+    }
+  </div>
+  <!-- Controles opcionales a la derecha (por ejemplo, flechas de un carrusel) -->
+  <slot name="action" />
+</div>

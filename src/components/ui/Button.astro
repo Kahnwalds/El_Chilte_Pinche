@@ -1,0 +1,73 @@
+---
+import type { HTMLAttributes } from "astro/types";
+
+type Variant = "primary" | "secondary" | "ghost" | "icon";
+type Size = "sm" | "md" | "lg";
+
+interface Props extends Omit<HTMLAttributes<"a">, "class" | "type"> {
+  variant?: Variant;
+  size?: Size;
+  /** Si recibe href se renderiza como enlace; si no, como botón. */
+  href?: string;
+  type?: "button" | "submit" | "reset";
+  disabled?: boolean;
+  /** Nombre accesible. Obligatorio en la variante icon, que no lleva texto. */
+  label?: string;
+  class?: string;
+}
+
+const {
+  variant = "primary",
+  size = "md",
+  href,
+  type = "button",
+  disabled = false,
+  label,
+  class: className,
+  ...rest
+} = Astro.props;
+
+if (variant === "icon" && !label && import.meta.env.DEV) {
+  console.warn("[Button] La variante icon necesita la prop `label`.");
+}
+
+const base =
+  "inline-flex items-center justify-center gap-space-sm font-label-lg text-label-lg transition-colors " +
+  "focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-container " +
+  "disabled:pointer-events-none disabled:opacity-50 aria-disabled:pointer-events-none aria-disabled:opacity-50";
+
+const variants: Record<Variant, string> = {
+  primary:
+    "rounded-lg bg-primary-container text-on-primary shadow-button hover:bg-primary",
+  secondary:
+    "rounded-lg bg-surface-container-high text-on-surface hover:bg-surface-variant",
+  ghost: "rounded-lg text-primary hover:underline",
+  icon: "rounded-full bg-surface-container-lowest text-on-surface shadow-sm hover:bg-surface-variant",
+};
+
+const sizes: Record<Variant, Record<Size, string>> = {
+  primary: { sm: "px-space-md py-space-xs", md: "px-space-md py-space-sm", lg: "px-space-lg py-space-md" },
+  secondary: { sm: "px-space-md py-space-xs", md: "px-space-md py-space-sm", lg: "px-space-lg py-space-md" },
+  ghost: { sm: "px-space-xs py-space-xs", md: "px-space-sm py-space-xs", lg: "px-space-md py-space-sm" },
+  icon: { sm: "size-9", md: "size-10", lg: "size-12" },
+};
+
+const Tag = href ? "a" : "button";
+const attrs = href
+  ? {
+      href: disabled ? undefined : href,
+      "aria-disabled": disabled ? ("true" as const) : undefined,
+      tabindex: disabled ? -1 : undefined,
+    }
+  : { type, disabled };
+---
+
+<Tag
+  class:list={[base, variants[variant], sizes[variant][size], className]}
+  aria-label={label}
+  {...attrs}
+  {...rest}
+>
+  <slot name="icon" />
+  <slot />
+</Tag>
