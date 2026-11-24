@@ -1,0 +1,161 @@
+/* Fuentes autoalojadas (sin CDN) */
+@import "@fontsource/epilogue/600.css";
+@import "@fontsource/epilogue/700.css";
+@import "@fontsource/epilogue/800.css";
+@import "@fontsource/plus-jakarta-sans/400.css";
+@import "@fontsource/plus-jakarta-sans/500.css";
+@import "@fontsource/plus-jakarta-sans/600.css";
+@import "@fontsource/plus-jakarta-sans/700.css";
+
+@import "tailwindcss";
+
+/* Tokens visuales de El ChiltePinche (tomados del prototipo) */
+@theme {
+  /* Colores */
+  --color-on-primary: #ffffff;
+  --color-on-surface-variant: #59413d;
+  --color-tertiary-fixed: #a3f69c;
+  --color-error-container: #ffdad6;
+  --color-secondary: #944a00;
+  --color-secondary-fixed: #ffdcc5;
+  --color-on-primary-container: #ffe5e1;
+  --color-surface-variant: #fedcc5;
+  --color-surface: #fff8f5;
+  --color-tertiary-fixed-dim: #88d982;
+  --color-tertiary-container: #2a792e;
+  --color-on-tertiary-fixed: #002204;
+  --color-on-secondary-fixed-variant: #713700;
+  --color-primary-fixed-dim: #ffb4a9;
+  --color-inverse-primary: #ffb4a9;
+  --color-secondary-container: #fc8f34;
+  --color-on-tertiary: #ffffff;
+  --color-secondary-fixed-dim: #ffb783;
+  --color-inverse-surface: #402c1d;
+  --color-on-secondary-container: #663100;
+  --color-on-primary-fixed-variant: #8e130c;
+  --color-error: #ba1a1a;
+  --color-on-background: #29180a;
+  --color-primary: #9e2016;
+  --color-on-tertiary-fixed-variant: #005312;
+  --color-on-surface: #29180a;
+  --color-tertiary: #065f18;
+  --color-surface-bright: #fff8f5;
+  --color-on-error: #ffffff;
+  --color-on-primary-fixed: #410000;
+  --color-surface-container-highest: #fedcc5;
+  --color-surface-container-high: #ffe3d0;
+  --color-on-error-container: #93000a;
+  --color-outline: #8d706c;
+  --color-surface-container: #ffeadd;
+  --color-surface-tint: #b02d21;
+  --color-on-secondary-fixed: #301400;
+  --color-primary-container: #c0392b;
+  --color-background: #fff8f5;
+  --color-surface-dim: #f5d4bd;
+  --color-outline-variant: #e1bfb9;
+  --color-inverse-on-surface: #ffede3;
+  --color-on-tertiary-container: #acffa4;
+  --color-primary-fixed: #ffdad5;
+  --color-surface-container-lowest: #ffffff;
+  --color-surface-container-low: #fff1e9;
+  --color-on-secondary: #ffffff;
+
+  /* Tipografías */
+  --font-display: "Epilogue", ui-sans-serif, system-ui, sans-serif;
+  --font-body: "Plus Jakarta Sans", ui-sans-serif, system-ui, sans-serif;
+
+  /* Escala tipográfica */
+  --text-headline-sm: 18px;
+  --text-headline-sm--line-height: 24px;
+  --text-headline-sm--font-weight: 600;
+  --text-display-mobile: 32px;
+  --text-display-mobile--line-height: 40px;
+  --text-display-mobile--letter-spacing: -0.01em;
+  --text-display-mobile--font-weight: 800;
+  --text-body-sm: 13px;
+  --text-body-sm--line-height: 20px;
+  --text-body-sm--font-weight: 400;
+  --text-body-lg: 18px;
+  --text-body-lg--line-height: 28px;
+  --text-body-lg--font-weight: 400;
+  --text-body-md: 15px;
+  --text-body-md--line-height: 24px;
+  --text-body-md--font-weight: 400;
+  --text-label-md: 12px;
+  --text-label-md--line-height: 16px;
+  --text-label-md--letter-spacing: 0.04em;
+  --text-label-md--font-weight: 600;
+  --text-display: 48px;
+  --text-display--line-height: 56px;
+  --text-display--letter-spacing: -0.02em;
+  --text-display--font-weight: 800;
+  --text-label-lg: 14px;
+  --text-label-lg--line-height: 20px;
+  --text-label-lg--letter-spacing: 0.02em;
+  --text-label-lg--font-weight: 600;
+  --text-headline-lg-mobile: 24px;
+  --text-headline-lg-mobile--line-height: 32px;
+  --text-headline-lg-mobile--font-weight: 700;
+  --text-label-sm: 11px;
+  --text-label-sm--line-height: 14px;
+  --text-label-sm--letter-spacing: 0.06em;
+  --text-label-sm--font-weight: 700;
+  --text-headline-md: 22px;
+  --text-headline-md--line-height: 28px;
+  --text-headline-md--font-weight: 700;
+  --text-headline-lg: 32px;
+  --text-headline-lg--line-height: 40px;
+  --text-headline-lg--letter-spacing: -0.01em;
+  --text-headline-lg--font-weight: 700;
+
+  /* Espaciado */
+  --spacing-space-lg: 1.5rem;
+  --spacing-space-sm: 0.5rem;
+  --spacing-gutter-mobile: 1rem;
+  --spacing-margin-mobile: 1rem;
+  --spacing-space-xl: 2.5rem;
+  --spacing-margin: 2rem;
+  --spacing-space-2xl: 4rem;
+  --spacing-space-md: 1rem;
+  --spacing-space-xs: 0.25rem;
+  --spacing-gutter: 1.5rem;
+
+  /* Radios */
+  --radius-sm: 0.25rem;
+  --radius-lg: 0.5rem;
+  --radius-xl: 0.75rem;
+  --radius-full: 9999px;
+
+  /* Alias de familia por estilo (clases del prototipo: font-body-md, font-label-lg, ...) */
+  --font-headline-sm: "Epilogue", ui-sans-serif, system-ui, sans-serif;
+  --font-headline-md: "Epilogue", ui-sans-serif, system-ui, sans-serif;
+  --font-headline-lg: "Epilogue", ui-sans-serif, system-ui, sans-serif;
+  --font-display-mobile: "Epilogue", ui-sans-serif, system-ui, sans-serif;
+  --font-headline-lg-mobile: "Epilogue", ui-sans-serif, system-ui, sans-serif;
+  --font-body-sm: "Plus Jakarta Sans", ui-sans-serif, system-ui, sans-serif;
+  --font-body-md: "Plus Jakarta Sans", ui-sans-serif, system-ui, sans-serif;
+  --font-body-lg: "Plus Jakarta Sans", ui-sans-serif, system-ui, sans-serif;
+  --font-label-sm: "Plus Jakarta Sans", ui-sans-serif, system-ui, sans-serif;
+  --font-label-md: "Plus Jakarta Sans", ui-sans-serif, system-ui, sans-serif;
+  --font-label-lg: "Plus Jakarta Sans", ui-sans-serif, system-ui, sans-serif;
+
+  /* Sombras (valores usados en el prototipo) */
+  --shadow-header: 0 1px 8px rgba(0, 0, 0, 0.04);
+  --shadow-button: 0 2px 8px -2px rgba(74, 53, 37, 0.15);
+}
+
+@layer base {
+  body {
+    background-color: var(--color-surface);
+    color: var(--color-on-surface);
+    font-family: var(--font-body);
+    font-size: var(--text-body-md);
+    line-height: var(--text-body-md--line-height);
+    -webkit-font-smoothing: antialiased;
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-primary-container);
+    outline-offset: 2px;
+  }
+}
